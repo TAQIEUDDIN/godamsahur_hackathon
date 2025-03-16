@@ -42,6 +42,15 @@
         <!-- Add this new section after the search input -->
         <div class="row mb-3">
             <div class="col-12">
+                <a href="{{ route('prayer-times') }}" class="btn btn-success">
+                    <i class="bi bi-calendar"></i> Prayer Times
+                </a>
+            </div>
+        </div>
+
+        <!-- Add this new section after the search input -->
+        <div class="row mb-3">
+            <div class="col-12">
                 <div class="card" id="distanceCard" style="display: none;">
                     <div class="card-body">
                         <h5 class="card-title">Distance Information</h5>

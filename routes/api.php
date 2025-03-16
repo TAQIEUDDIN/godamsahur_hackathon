@@ -4,6 +4,8 @@ use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\Api\PrayerTimeController;
+use App\Http\Controllers\Api\LocationController;
 
 
 /*
@@ -27,5 +29,16 @@ Route::prefix('v1')->group(function () {
     Route::get('/search/{type}', [PlaceController::class, 'searchByType'])
         ->where('type', 'restaurant|mosque|hotel');
     Route::get('/mapbox-search', [PlaceController::class, 'fetchFromMapbox']);
+
+    // Prayer Times route
+    Route::get('/prayer-times', [PrayerTimeController::class, 'getPrayerTimes']);
+
+    // Location endpoints
+    Route::get('/locations/search', [LocationController::class, 'search']);
+    Route::get('/places/nearby', [PlaceController::class, 'nearby']);
+    Route::get('/places/{id}', [PlaceController::class, 'details']);
+
+    // Qibla route
+    Route::get('/qibla', [QiblaController::class, 'getQiblaDirection']);
 });
 
