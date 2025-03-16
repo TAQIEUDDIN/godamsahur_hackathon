@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#ffffff">
-    <title>Location Search</title>
+    <title>MusafirBuddy - Your Muslim Travel Companion</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         #map { height: 500px; }
         .marker { width: 20px; height: 20px; border-radius: 50%; }
@@ -24,29 +25,169 @@
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+        body {
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .shifted {
+            margin-left: 250px; /* Adjust this value based on navbar width */
+        }
+
+:root {
+    --primary-color: #255F38;
+    --secondary-color: #1F7D53;
+    --white: #ffffff;
+    --light-green: #e8f5e9;
+}
+
+/* Navbar styles */
+.navbar-custom {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-height: 70px;
+    z-index: 999;
+}
+
+.navbar-brand {
+    color: var(--white) !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand i {
+    color: var(--light-green);
+    margin-right: 8px;
+}
+
+.nav-link {
+    color: var(--white) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin: 0 0.2rem;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.navbar-toggler {
+    border-color: var(--white);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Main content spacing */
+.main-content {
+    padding-top: 100px; /* Increased padding-top */
+    padding-bottom: 2rem;
+}
+
+/* Search section styles */
+.search-section {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-control {
+    border-radius: 8px 0 0 8px !important;
+    border: 2px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 8px 8px 0 !important;
+}
+
+/* Add these new styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;  /* Below navbar (999) but above content */
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        padding: 1rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
-    <div class="container mt-4">
+    <!-- Add this div right after body tag -->
+    <div class="overlay"></div>
+
+    <!-- Updated Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-backpack3"></i>
+                MusafirBuddy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/prayer-times">Prayer Times</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add margin-top to main content -->
+    <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-12">
                 <div class="input-group mb-3">
                     <input type="text" id="searchInput" class="form-control" placeholder="Please enter location">
-                    <button class="btn btn-primary" onclick="searchLocation()">Search</button>
+                    <button class="btn btn-primary" onclick="searchLocation()"><i class="bi bi-search"></i></button>
                 </div>
             </div>
         </div>
         
-        <!-- Add this new section after the search input -->
-        <div class="row mb-3">
-            <div class="col-12">
-                <a href="{{ route('prayer-times') }}" class="btn btn-success">
-                    <i class="bi bi-calendar"></i> Prayer Times
-                </a>
-            </div>
-        </div>
+      
 
         <!-- Add this new section after the search input -->
         <div class="row mb-3">
@@ -363,5 +504,28 @@
 
 
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            const overlay = document.querySelector('.overlay');
+
+            navbarToggler.addEventListener('click', function() {
+                overlay.classList.toggle('show');
+            });
+
+            // Close navbar when clicking overlay
+            overlay.addEventListener('click', function() {
+                navbarCollapse.classList.remove('show');
+                overlay.classList.remove('show');
+            });
+
+            // Handle Bootstrap collapse events
+            navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+                overlay.classList.remove('show');
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
