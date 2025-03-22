@@ -71,7 +71,12 @@
         <ul>
           <li><a href="{{url('/')}}" >Home</a></li>
           <li> <a href="{{url('/Place')}}">Find Location</a></li>
-          <li><a href="{{url('/prayer-times')}}">Prayer Time</a></li>
+          <li class="dropdown"><a href="#"><span>Prayer</span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="{{url('/prayer-times')}}">Prayer Times</a></li>
+              <li><a href="{{url('/prayer-guide')}}">Prayer Guide</a></li>
+            </ul>
+          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

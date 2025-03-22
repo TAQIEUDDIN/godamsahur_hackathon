@@ -49,7 +49,13 @@
         <ul>
           <li><a href="javascript:void(0)" onclick="scrollToSection('hero')" >Home</a></li>
           <li> <a href="{{url('/Place')}}">Find Location</a></li>
-          <li><a href="{{url('/prayer-times')}}">Prayer Time</a></li>
+          <li class="dropdown"><a href="#"><span>Prayer</span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="{{url('/prayer-times')}}">Prayer Times</a></li>
+              <li><a href="{{url('/prayer-guide')}}">Prayer Guide</a></li>
+            </ul>
+          </li>
+
           <li class="dropdown"><a href="#"><span>Discover Us</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="javascript:void(0)" onclick="scrollToSection('about')">About Us</a></li>
@@ -293,7 +299,7 @@
               <div class="pic"><img src="assets/img/person/adam.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Adam</h4>
-                <span>Backend Developer/Database Administrator</span>
+                <span>Backend Developer</span>
                 <p>Specialized in Database Management, authentication and authorization.</p>
                 <div class="social">
                   <a href="{{url('https://www.linkedin.com/in/adam-ikhwan-4a3a95291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app')}}"> <i class="bi bi-linkedin"></i> </a>
@@ -307,7 +313,7 @@
               <div class="pic"><img src="assets/img/person/mal.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Akmal</h4>
-                <span>UI/UX Designer</span>
+                <span>Frontend Developer</span>
                 <p>Crafting intuitive and user-friendly designs to help Muslim travelers navigate easily.</p>
                 <div class="social">
                   <a href=""> <i class="bi bi-linkedin"></i> </a>

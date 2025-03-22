@@ -9,6 +9,10 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+Route::get('/prayer-guide', function(){
+    return view('prayerguide');
+});
+
 
 Route::get('/Place', [PlaceController::class, 'index'])->name('home');
 
