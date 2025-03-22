@@ -77,6 +77,30 @@
               <li><a href="{{url('/prayer-guide')}}">Prayer Guide</a></li>
             </ul>
           </li>
+          @auth
+            <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
+        @endauth
+          @guest
+            <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href="{{ route('register') }}">Register</a></li>
+          @else
+            <li class="dropdown">
+              <a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="{{ route('profile.show') }}">Profile</a></li>
+                <li>
+                  <a href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+                    Logout
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </li>
+              </ul>
+            </li>
+          @endguest
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

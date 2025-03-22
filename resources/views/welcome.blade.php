@@ -34,6 +34,41 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+  /* Add this to your existing styles */
+  .navmenu ul li a.auth-link {
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .navmenu ul li a.login-link {
+    background-color: transparent;
+    border: 1px solid white;
+  }
+
+  .navmenu ul li a.register-link {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+
+  .navmenu ul li a.auth-link:hover {
+    background-color: white;
+    color: var(--primary-color);
+  }
+
+  /* Style for user dropdown */
+  .navmenu .user-dropdown {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  .navmenu .user-dropdown:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  </style>
 </head>
 
 <body class="index-page">
@@ -63,12 +98,46 @@
               <li><a href="javascript:void(0)" onclick="scrollToSection('team')">Team</a></li>
             </ul>
           </li>
+          @auth
+            <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
+        @endauth
+          <!-- Add these authentication links -->
+          @guest
+            <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href="{{ route('register') }}">Register</a></li>
+          @else
+            <li class="dropdown">
+              <a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="{{ route('profile.show') }}">Profile</a></li>
+                <li>
+                  <a href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+                    Logout
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </li>
+              </ul>
+            </li>
+          @endguest
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
     </div>
   </header>
+
+  <!-- Add this right after your header section -->
+  @if(session('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert" 
+           style="position: fixed; top: 80px; right: 20px; z-index: 1000;">
+          {{ session('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  @endif
 
   <main class="main">
 
@@ -256,7 +325,7 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-moon-stars"></i></div>
-              <h4><a href="" class="stretched-link">Jama' and Qasr Guidance</a></h4>
+              <h4><a href="{{url('/prayer-guide')}}" class="stretched-link">Jama' and Qasr Guidance</a></h4>
               <p>Follow step-by-step instructions on how to perform Jama' (combined) and Qasr (shortened) prayers while traveling, based on guidelines provided by <strong>JAKIM</strong> to ensure validity and ease.</p>
             </div>
           </div><!-- End Service Item -->
@@ -285,8 +354,8 @@
               <div class="pic"><img src="assets/img/person/taqie.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Taqieuddin</h4>
-                <span>Team Leader</span>
-                <p>Specialized in Laravel Web Development, API integrations and Website Cosmetic, ensuring a seamless experience for Muslim travelers.</p>
+                <span>Project Leader</span>
+                <p>Specialized in Laravel full-stack web development, API integrations and website aesthetics, ensuring a seamless experience for Muslim travelers.</p>
                 <div class="social">
                   <a href="{{url('https://www.linkedin.com/in/muhammad-taqieuddin-6312b1293?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app')}}"> <i class="bi bi-linkedin"></i> </a>
                 </div>
@@ -382,6 +451,20 @@
     window.history.replaceState("", document.title, window.location.pathname);
   }
 
+  </script>
+
+  <!-- Add this before closing </body> tag in welcome.blade.php -->
+  <script>
+    // Auto dismiss alerts after 5 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    });
   </script>
 
 </body>
