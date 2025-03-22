@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\Api\PrayerTimeController;
-use App\Http\Controllers\Api\LocationController;
+// use App\Http\Controllers\Api\LocationController;
 
 
 /*
@@ -34,11 +34,10 @@ Route::prefix('v1')->group(function () {
     Route::get('/prayer-times', [PrayerTimeController::class, 'getPrayerTimes']);
 
     // Location endpoints
-    Route::get('/locations/search', [LocationController::class, 'search']);
+    // Route::get('/locations/search', [LocationController::class, 'search']);
     Route::get('/places/nearby', [PlaceController::class, 'nearby']);
     Route::get('/places/{id}', [PlaceController::class, 'details']);
 
-    // Qibla route
-    Route::get('/qibla', [QiblaController::class, 'getQiblaDirection']);
+    
 });
 

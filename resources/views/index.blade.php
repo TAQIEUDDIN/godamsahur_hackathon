@@ -8,7 +8,23 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
     <style>
         #map { height: 500px; }
         .marker { width: 20px; height: 20px; border-radius: 50%; }
@@ -25,158 +41,184 @@
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        body {
-            transition: margin-left 0.3s ease-in-out;
+
+        :root {
+            --primary-color: #255F38;
+            --secondary-color: #1F7D53;
         }
-        .shifted {
-            margin-left: 250px; /* Adjust this value based on navbar width */
+
+        /* Search section styles */
+        .search-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
         }
 
-:root {
-    --primary-color: #255F38;
-    --secondary-color: #1F7D53;
-    --white: #ffffff;
-    --light-green: #e8f5e9;
-}
+        .input-group {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-/* Navbar styles */
-.navbar-custom {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    min-height: 70px;
-    z-index: 999;
-}
+        .form-control {
+            border-radius: 8px 0 0 8px !important;
+            border: 2px solid #e0e0e0;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+        }
 
-.navbar-brand {
-    color: var(--white) !important;
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    letter-spacing: 0.5px;
-}
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 8px 8px 0 !important;
+        }
 
-.navbar-brand i {
-    color: var(--light-green);
-    margin-right: 8px;
-}
+        /* Add this new style */
+        .main .container {
+            margin-top: 100px; /* Adds space below fixed header */
+            padding: 20px;
+        }
 
-.nav-link {
-    color: var(--white) !important;
-    font-weight: 500;
-    padding: 0.5rem 1rem !important;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-    margin: 0 0.2rem;
-}
+        /* Navbar Styles */
+        .navbar {
+            padding: 0;
+        }
 
-.nav-link:hover, .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px);
-}
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
 
-.navbar-toggler {
-    border-color: var(--white);
-}
+        .navbar a {
+            display: flex;
+            align-items: center;
+            padding: 10px 0 10px 30px;
+            font-size: 15px;
+            font-weight: 500;
+            color: white;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
 
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
+        .navbar a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
 
-/* Main content spacing */
-.main-content {
-    padding-top: 100px; /* Increased padding-top */
-    padding-bottom: 2rem;
-}
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+            line-height: 0;
+            transition: 0.5s;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 9998;
+        }
 
-/* Search section styles */
-.search-section {
-    background-color: var(--white);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    margin-bottom: 2rem;
-}
+        @media (max-width: 1280px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
 
-.input-group {
-    max-width: 800px;
-    margin: 0 auto;
-}
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 400px;
+                bottom: 0;
+                transition: 0.3s;
+                z-index: 9997;
+            }
 
-.form-control {
-    border-radius: 8px 0 0 8px !important;
-    border: 2px solid #e0e0e0;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-}
+            .navbar ul {
+                position: absolute;
+                inset: 0;
+                padding: 50px 0;
+                margin: 0;
+                background: rgba(37, 95, 56, 0.9);
+                overflow-y: auto;
+                transition: 0.3s;
+                z-index: 9998;
+                flex-direction: column;
+            }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0 8px 8px 0 !important;
-}
+            .navbar a {
+                padding: 10px 20px;
+                font-size: 15px;
+                text-align: center;
+                width: 100%;
+            }
 
-/* Add these new styles */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 998;  /* Below navbar (999) but above content */
-}
+            .navbar-mobile {
+                right: 0;
+            }
 
-.overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
+            body.mobile-nav-active {
+                overflow: hidden;
+            }
+        }
 
-@media (max-width: 991.98px) {
-    .navbar-collapse {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        padding: 1rem;
-        border-radius: 0 0 0.5rem 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-}
+        .filter-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body>
-    <!-- Add this div right after body tag -->
-    <div class="overlay"></div>
+<body class="index-page">
 
-    <!-- Updated Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-backpack3"></i>
-                MusafirBuddy
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" 
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/prayer-times">Prayer Times</a>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-    <!-- Add margin-top to main content -->
+      <a class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">MusafirBuddy</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{url('/')}}">Home</a></li>
+          <li> <a href="{{url('/Place')}}">Find Location</a></li>
+          <li><a href="{{url('/prayer-times')}}">Prayer Time</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main content -->
+   <main class="main">
     <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-12">
@@ -186,10 +228,30 @@
                 </div>
             </div>
         </div>
-        
-      
 
-        <!-- Add this new section after the search input -->
+        <!-- Add this right after your search input group -->
+        <div class="row mb-3" id="filterSection" style="display: none;">
+            <div class="col-12">
+                <div class="filter-container">
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-secondary filter-btn active" data-filter="all">
+                            All
+                        </button>
+                        <button class="btn btn-outline-secondary filter-btn" data-filter="mosque">
+                            <i class="bi bi-building"></i> Mosques
+                        </button>
+                        <button class="btn btn-outline-secondary filter-btn" data-filter="restaurant">
+                            <i class="bi bi-cup-hot"></i> Restaurants
+                        </button>
+                        <button class="btn btn-outline-secondary filter-btn" data-filter="hotel">
+                            <i class="bi bi-house-door"></i> Hotels
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Distance Information Card -->
         <div class="row mb-3">
             <div class="col-12">
                 <div class="card" id="distanceCard" style="display: none;">
@@ -201,6 +263,7 @@
             </div>
         </div>
 
+        <!-- Map and Results -->
         <div class="row">
             <div class="col-md-8">
                 <div id="map" class="mb-3">
@@ -217,6 +280,9 @@
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Keep your existing JavaScript for map functionality -->
     <script>
         mapboxgl.accessToken = '{{ config('mapbox.access_token') }}';
         let map;
@@ -331,7 +397,7 @@
             // Debug log
             console.log('Searching for:', query);
 
-            fetch(`/v1/mapbox-search?query=${encodeURIComponent(query)}`, {
+            fetch(`/v1/mapbox-search?query=${encodeURIComponent(query)}&type=mosque`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -366,12 +432,12 @@
                         <strong>Marhalah:</strong> ${calculateMarhalah(distance)}<br>
                         <div class="mt-3">
                             <a href="${getGoogleMapsUrl(destLat, destLng, query)}" 
-                               class="btn btn-primary me-2" 
+                               class="btn btn-primary me-3" 
                                target="_blank">
                                 <i class="bi bi-google"></i> Navigate with Google Maps
                             </a>
                             <a href="${getWazeUrl(destLat, destLng)}" 
-                               class="btn btn-info" 
+                               class="btn btn-info mt-2" 
                                target="_blank">
                                 <i class="bi bi-cursor"></i> Navigate with Waze
                             </a>
@@ -386,6 +452,22 @@
                     map.flyTo({ center: [lng, lat], zoom: 13 });
                 }
 
+                // Filter mosque results to only include masjid and surau
+                if (data.places && data.places.mosque) {
+                    data.places.mosque = data.places.mosque.filter(place => {
+                        const categories = place.properties.categories || [];
+                        const name = (place.text || '').toLowerCase();
+                        return categories.some(category => 
+                            category.toLowerCase().includes('masjid') ||
+                            category.toLowerCase().includes('surau') ||
+                            category.toLowerCase().includes('mosque')
+                        ) ||
+                        name.includes('masjid') ||
+                        name.includes('surau') ||
+                        name.includes('mosque');
+                    });
+                }
+
                 displayResults(data.places);
             })
             .catch(error => {
@@ -397,6 +479,12 @@
                     </div>`;
                 document.getElementById('distanceCard').style.display = 'none';
             });
+
+            // Show filter section when search is performed
+            document.getElementById('filterSection').style.display = 'block';
+            
+            // Initialize filters
+            initializeFilters();
         }
 
         function displayResults(places) {
@@ -502,30 +590,84 @@
             return colors[type] || '#000000';
         }
 
+        // Add this to your existing JavaScript
+        function initializeFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const resultsContainer = document.getElementById('results');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    filterResults(filterValue);
+                });
+            });
+        }
 
+        function filterResults(filterValue) {
+            const resultItems = document.querySelectorAll('.list-group');
+            
+            resultItems.forEach(item => {
+                if (filterValue === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    const sectionTitle = item.previousElementSibling.textContent.toLowerCase();
+                    if (sectionTitle.includes(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navbarToggler = document.querySelector('.navbar-toggler');
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            const overlay = document.querySelector('.overlay');
+    </main>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+ 
+  <script src="/assets/js/main.js"></script>
 
-            navbarToggler.addEventListener('click', function() {
-                overlay.classList.toggle('show');
-            });
+  <script>
+  function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
-            // Close navbar when clicking overlay
-            overlay.addEventListener('click', function() {
-                navbarCollapse.classList.remove('show');
-                overlay.classList.remove('show');
-            });
+  // Clear hash on page load
+  if (window.location.hash) {
+    window.history.replaceState("", document.title, window.location.pathname);
+  }
+</script>
+<footer id="footer" class="footer">
 
-            // Handle Bootstrap collapse events
-            navbarCollapse.addEventListener('hidden.bs.collapse', function () {
-                overlay.classList.remove('show');
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+            <span class="sitename">MusafirBuddy</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Muzaffar Heights,</p>
+            <p>Ayer Keroh, Melaka</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+60 11-21219683</span></p>
+            <p><strong>Email:</strong> <span>mtaqieuddin03@gmail.com</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </footer>
 </body>
 </html>

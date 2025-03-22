@@ -4,7 +4,13 @@ use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PrayerViewController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PlaceController::class, 'index'])->name('home');
+
+Route::get('/', function(){
+    return view('welcome');
+});
+
+
+Route::get('/Place', [PlaceController::class, 'index'])->name('home');
 
 Route::prefix('v1')->group(function () {
     Route::get('/search', [PlaceController::class, 'searchPlaces']);

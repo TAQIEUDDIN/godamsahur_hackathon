@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prayer Times - MusafirBuddy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+      <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
     <style>
         .prayer-times-card {
             max-width: 400px;
             margin: 0 auto;
+            margin-top: 100px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .prayer-row {
@@ -41,156 +56,30 @@
             border-bottom: 1px solid #dee2e6;
             text-align: center;
         }
-        body {
-            transition: margin-left 0.3s ease-in-out;
-        }
-        .shifted {
-            margin-left: 250px; /* Adjust this value based on navbar width */
-        }
-
-:root {
-    --primary-color: #255F38;
-    --secondary-color: #1F7D53;
-    --white: #ffffff;
-    --light-green: #e8f5e9;
-}
-
-/* Navbar styles */
-.navbar-custom {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    min-height: 70px;
-    z-index: 999;
-}
-
-.navbar-brand {
-    color: var(--white) !important;
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    letter-spacing: 0.5px;
-}
-
-.navbar-brand i {
-    color: var(--light-green);
-    margin-right: 8px;
-}
-
-.nav-link {
-    color: var(--white) !important;
-    font-weight: 500;
-    padding: 0.5rem 1rem !important;
-    transition: all 0.3s ease;
-    border-radius: 5px;
-    margin: 0 0.2rem;
-}
-
-.nav-link:hover, .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px);
-}
-
-.navbar-toggler {
-    border-color: var(--white);
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-/* Main content spacing */
-.main-content {
-    padding-top: 100px; /* Increased padding-top */
-    padding-bottom: 2rem;
-}
-
-/* Search section styles */
-.search-section {
-    background-color: var(--white);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    margin-bottom: 2rem;
-}
-
-.input-group {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form-control {
-    border-radius: 8px 0 0 8px !important;
-    border: 2px solid #e0e0e0;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0 8px 8px 0 !important;
-}
-
-/* Add these new styles */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 998;  /* Below navbar (999) but above content */
-}
-
-.overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-@media (max-width: 991.98px) {
-    .navbar-collapse {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        padding: 1rem;
-        border-radius: 0 0 0.5rem 0.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-}
     </style>
 </head>
 <body>
-    <!-- Add this div right after body tag -->
-    <div class="overlay"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-compass"></i>
-                MusafirBuddy
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/prayer-times">Prayer Times</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-    <!-- Add margin-top to container to account for fixed navbar -->
-    <div class="container py-5" style="margin-top: 70px;">
+      <a class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">MusafirBuddy</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{url('/')}}" >Home</a></li>
+          <li> <a href="{{url('/Place')}}">Find Location</a></li>
+          <li><a href="{{url('/prayer-times')}}">Prayer Time</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+  <main class="main">
+    <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <div class="card prayer-times-card">
@@ -206,7 +95,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="alert alert-danger d-none mt-3" id="error-message"></div>
             </div>
         </div>
@@ -299,7 +187,6 @@
                     });
             }
 
-            // Automatically request location when page loads
             if (navigator.geolocation) {
                 showLoading();
                 navigator.geolocation.getCurrentPosition(
@@ -315,29 +202,51 @@
                 showError('Geolocation is not supported by this browser');
             }
         });
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const navbarToggler = document.querySelector('.navbar-toggler');
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            const overlay = document.querySelector('.overlay');
-
-            navbarToggler.addEventListener('click', function() {
-                overlay.classList.toggle('show');
-            });
-
-            // Close navbar when clicking overlay
-            overlay.addEventListener('click', function() {
-                navbarCollapse.classList.remove('show');
-                overlay.classList.remove('show');
-            });
-
-            // Handle Bootstrap collapse events
-            navbarCollapse.addEventListener('hidden.bs.collapse', function () {
-                overlay.classList.remove('show');
-            });
-        });
     </script>
 
+   
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/php-email-form/validate.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+  <script>
+  function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Clear hash on page load
+  if (window.location.hash) {
+    window.history.replaceState("", document.title, window.location.pathname);
+  }
+</script>
+<footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+            <span class="sitename">MusafirBuddy</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Muzaffar Heights,</p>
+            <p>Ayer Keroh, Melaka</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+60 11-21219683</span></p>
+            <p><strong>Email:</strong> <span>mtaqieuddin03@gmail.com</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -12,7 +12,7 @@ class PlaceController extends Controller
 {
     private $placeCategories = [
         'restaurant' => 'restaurant',
-        'mosque' => 'place_of_worship',
+        'mosque' => ['masjid', 'surau', 'mosque'],
         'hotel' => 'lodging'
     ];
 
@@ -155,11 +155,6 @@ class PlaceController extends Controller
                     '13302',  // Hawker Stand
                     '13334',  // Food Court
                 ],
-                'mosque' => [
-                    '12013',  // Religious Place
-                    '12094',  // Mosque
-                    '12095',  // Prayer Room
-                ],
                 'hotel' => [
                     '19014',  // Hotel
                     '19016',  // Hostel
@@ -167,7 +162,10 @@ class PlaceController extends Controller
                     '19021',  // Bed & Breakfast
                     '19022',  // Boarding House
                     '19023',  // Homestay
-                ]
+                ],
+                'mosque' => [
+                    '12094',  // Mosque specifically
+                ],
             ];
             
             // Malaysian-specific search terms
@@ -182,19 +180,18 @@ class PlaceController extends Controller
                     'food court', 
                     'hawker'
                 ],
-                'mosque' => [
-                    'mosque', 
-                    'masjid', 
-                    'surau', 
-                    'prayer room'
-                ],
                 'hotel' => [
                     'hotel', 
                     'homestay', 
                     'penginapan', 
                     'resort', 
                     'chalet'
-                ]
+                ],
+                'mosque' => [
+                    'masjid', 
+                    'surau', 
+                    'mosque'
+                ],
             ];
             
             $results = [];
