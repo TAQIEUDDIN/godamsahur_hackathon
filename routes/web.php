@@ -17,7 +17,7 @@ Route::get('/prayer-guide', function(){
 });
 
 
-Route::get('/Place', [PlaceController::class, 'index'])->name('home');
+Route::get('/Place', [PlaceController::class, 'index'])->name('place');
 
 Route::prefix('v1')->group(function () {
     Route::get('/search', [PlaceController::class, 'searchPlaces']);
