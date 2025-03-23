@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -87,7 +87,7 @@
           <li class="dropdown"><a href="#"><span>Prayer</span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="{{url('/prayer-times')}}">Prayer Times</a></li>
-              <li><a href="{{url('/prayer-guide')}}">Prayer Guide</a></li>
+              <li><a href="javascript:void(0)" onclick="scrollToSection('call-to-action')">Prayer Guide</a></li>
             </ul>
           </li>
 
@@ -317,8 +317,8 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-chat-left-text"></i></div>
-              <h4><a href="" class="stretched-link">Community Reviews</a></h4>
-              <p>Read and share experiences with fellow travelers about Muslim-friendly places.</p>
+              <h4><a href="{{url('/reviews')}}" class="stretched-link">Community Reviews</a></h4>
+              <p>Read and share experiences with fellow travelers about Muslim-friendly places.<strong>User need to login first to access this feature</strong></p>
             </div>
           </div><!-- End Service Item -->
 
@@ -336,14 +336,66 @@
 
     </section><!-- /Services Section -->
 
-    <!-- Team Section -->
-    <section id="team" class="team section">
+    <section id="call-to-action" class="call-to-action section dark-background">
+    <img src="assets/img/bg/sendayan.jpg" alt="gambar masjid" class="bg-image">
+    
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+            <div class="col-xl-9 text-center text-xl-start">
+                <h3>Panduan Solat Jamak & Qasar</h3>
+                <p>Fahami panduan menunaikan solat jamak dan qasar mengikut garis panduan JAKIM. Permudahkan perjalanan anda sambil mengekalkan ibadah.</p>
+            </div>
+            <div class="col-xl-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="{{url('https://ecentral.my/solat-jamak-dan-qasar/')}}" target="_blank">
+                    <i class="bi bi-book-half"></i> Panduan Lengkap
+                </a>
+            </div>
+        </div>
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Our Team</h2>
-        <p>Meet the passionate minds behind MuslimBuddy, dedicated to enhancing Muslim travel experiences.</p>
-      </div><!-- End Section Title -->
+        <div class="faq-section mt-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="faq-container">
+                        <div class="faq-item glass-effect">
+                            <h3><span>01</span> Bila Boleh Jamak & Qasar?</h3>
+                            <div class="faq-content">
+                                <p><i class="faq-toggle bi bi-chevron-right"></i>Apabila bermusafir melebihi 81km (2 marhalah) dengan tujuan yang jelas dan dibenarkan syarak.</p>
+                            </div>
+                            
+                        </div>
+
+                        <div class="faq-item glass-effect">
+                            <h3><span>02</span> Berapa Lama Tempoh Dibenarkan?</h3>
+                            <div class="faq-content">
+                                <p><i class="faq-toggle bi bi-chevron-right"></i>Sehingga 3 hari 3 malam di destinasi, tidak termasuk hari sampai dan hari balik.</p>
+                            </div>
+                            
+                        </div>
+
+                        <div class="faq-item glass-effect">
+                            <h3><span>03</span> Solat Yang Boleh Dijamak & Qasar?</h3>
+                            <div class="faq-content"> 
+                                <p><i class="faq-toggle bi bi-chevron-right"></i>Zohor dengan Asar, Maghrib dengan Isyak. Untuk Qasar, Zohor, Asar dan Isyak dari 4 ke 2 rakaat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </section><!-- /Call To Action Section -->
+
+   
+
+       <!-- Team Section -->
+       <section id="team" class="team section">
+     <!-- Section Title -->
+     <div class="container section-title" data-aos="fade-up">
+      <h2>Our Team</h2>
+      <p>Meet the passionate minds behind MuslimBuddy, dedicated to enhancing Muslim travel experiences.</p>
+    </div><!-- End Section Title -->
 
       <div class="container">
 
@@ -355,7 +407,7 @@
               <div class="member-info">
                 <h4>Taqieuddin</h4>
                 <span>Project Leader</span>
-                <p>Specialized in Laravel full-stack web development, API integrations and website aesthetics, ensuring a seamless experience for Muslim travelers.</p>
+                <p>Experienced in Laravel full-stack web development, API integrations, and website aesthetics, dedicated to providing a seamless digital experience for Muslim travelers.</p>
                 <div class="social">
                   <a href="{{url('https://www.linkedin.com/in/muhammad-taqieuddin-6312b1293?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app')}}"> <i class="bi bi-linkedin"></i> </a>
                 </div>

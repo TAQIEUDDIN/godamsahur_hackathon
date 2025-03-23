@@ -1,17 +1,22 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container" style="margin-top: 100px;">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="logo-section">
+                <h1>MusafirBuddy</h1>
+                <p>Your Trusted Travel Companion</p>
+            </div>
+            
+            <div class="card auth-card">
+                <div class="card-header">{{ __('Login to Your Account') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        <div class="row mb-4">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -23,19 +28,24 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-4">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="input-group">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+                                    </button>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-4">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -52,16 +62,16 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                <!-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Forgot Password?') }}
                                     </a>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="row mt-3">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="row mt-4">
+                            <div class="col-md-8 offset-md-4 auth-links">
                                 <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
                             </div>
                         </div>
@@ -72,17 +82,37 @@
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    const toggleIcon = document.querySelector('#togglePasswordIcon');
+
+    togglePassword.addEventListener('click', function () {
+        // Toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        
+        // Toggle the icon
+        toggleIcon.classList.toggle('bi-eye');
+        toggleIcon.classList.toggle('bi-eye-slash');
+    });
+});
+</script>
+
 <style>
-body {
+.input-group .btn-outline-secondary {
+    border-color: #ced4da;
+    color: #6c757d;
+}
+
+.input-group .btn-outline-secondary:hover {
     background-color: #f8f9fa;
+    color: #6c757d;
 }
-.card {
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-.card-header {
-    background-color: #fff;
-    border-bottom: 2px solid #f8f9fa;
-    font-weight: bold;
+
+.input-group .form-control:focus + .btn-outline-secondary {
+    border-color: #86b7fe;
 }
 </style>
 @endsection
