@@ -209,7 +209,7 @@
         <ul>
           <li><a href="{{url('/')}}">Home</a></li>
           <li> <a href="{{url('/Place')}}">Find Location</a></li>
-          
+          <li><a href="{{url('/prayer-times')}}">Prayer Times</a></li>
           @auth
             <li><a href="{{ route('reviews.index') }}">Reviews</a></li>
         @endauth
