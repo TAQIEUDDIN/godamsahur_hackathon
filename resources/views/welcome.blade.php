@@ -325,7 +325,7 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-moon-stars"></i></div>
-              <h4><a href="{{url('/prayer-guide')}}" class="stretched-link">Jama' and Qasr Guidance</a></h4>
+              <h4><a href="javascript:void(0)" onclick="scrollToSection('call-to-action')" class="stretched-link">Jama' and Qasr Guidance</a></h4>
               <p>Follow step-by-step instructions on how to perform Jama' (combined) and Qasr (shortened) prayers while traveling, based on guidelines provided by <strong>JAKIM</strong> to ensure validity and ease.</p>
             </div>
           </div><!-- End Service Item -->
