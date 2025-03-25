@@ -437,7 +437,7 @@
                 <span>Frontend Developer</span>
                 <p>Crafting intuitive and user-friendly designs to help Muslim travelers navigate easily.</p>
                 <div class="social">
-                  <a href=""> <i class="bi bi-linkedin"></i> </a>
+                  <a href="{{url('https://www.linkedin.com/in/akmal-tajudin-6037b3254?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app')}}"> <i class="bi bi-linkedin"></i> </a>
                 </div>
               </div>
             </div>
